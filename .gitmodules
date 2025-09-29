@@ -1,0 +1,4 @@
+[submodule "libraries/juce"]
+	path = libraries/juce
+	url = git@github.com:juce-framework/JUCE.git
+	branch = develop
