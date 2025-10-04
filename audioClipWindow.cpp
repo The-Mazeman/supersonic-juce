@@ -14,7 +14,10 @@ void AudioClipWindow::paint(juce::Graphics& graphics)
     graphics.setColour(juce::Colours::white);
     graphics.fillRect(getLocalBounds());
     graphics.setColour(juce::Colours::red);
-    std::cout << audioThumbnail->getTotalLength() << std::endl;
-    audioThumbnail->drawChannels(graphics, getLocalBounds(), 0.0, audioThumbnail->getTotalLength(), 1.0);
+    if(audioThumbnail->isFullyLoaded())
+    {
+        auto clipLength = audioThumbnail->getTotalLength();
+        audioThumbnail->drawChannels(graphics, getLocalBounds(), 0.0, clipLength, 1.0);
+    }
 
 }

@@ -7,6 +7,7 @@ class ClipAreaWindow : public juce::Component,
                        public juce::FileDragAndDropTarget
 {
     private:
+    float multiplier;
     GlobalSettings* globalSettings;
     std::vector<AudioClipWindow> audioClipWindows;
     juce::AudioThumbnailCache audioThumbnailCache;

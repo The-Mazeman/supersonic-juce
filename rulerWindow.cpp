@@ -26,6 +26,7 @@ void RulerWindow::paint(juce::Graphics& graphics)
     pixelsPerSecond *= multiplier;
     //std::cout << "pixelsPerSecond: " << pixelsPerSecond << std::endl;
     int markingCount = static_cast<int>(static_cast<float>(bounds.getWidth()) / pixelsPerSecond);
+    int subdivisionSpacing = static_cast<int>(pixelsPerSecond / 4.0f);
 
     for(int i = 0; i != markingCount + 2; ++i)
     {
@@ -33,6 +34,13 @@ void RulerWindow::paint(juce::Graphics& graphics)
         int markingStart = offsetX / pixelsPerSecond;
         int markingX = (pixelsPerSecond * (markingStart + i)) - offsetX;
         graphics.drawLine(markingX, 0, markingX, 16);
+
+        for(int j = 0; j != 4; ++j)
+        {
+            int subdivisionOffset = j * subdivisionSpacing;
+            int subdivisionX = markingX + subdivisionOffset;
+            graphics.drawLine(subdivisionX, 0, subdivisionX, 8);
+        }
 
         float markingNumber = static_cast<float>(i + markingStart);
         markingNumber *= multiplier;

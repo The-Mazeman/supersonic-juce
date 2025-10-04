@@ -8,5 +8,6 @@ class GlobalSettings
     int offsetX;
     int offsetY;
     int sampleRate;
+    int trackHeaderHeight;
 };
 
