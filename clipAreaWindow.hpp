@@ -9,7 +9,7 @@ class ClipAreaWindow : public juce::Component,
     private:
     float multiplier;
     GlobalSettings* globalSettings;
-    std::vector<AudioClipWindow> audioClipWindows;
+    std::vector<AudioClipWindow*> audioClipWindows;
     juce::AudioThumbnailCache audioThumbnailCache;
     juce::AudioFormatManager audioFormatManager;
 

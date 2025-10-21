@@ -5,7 +5,6 @@ ClipAreaWindow::ClipAreaWindow()
 {
     this->multiplier = 1.0f;
     audioFormatManager.registerBasicFormats();
-
 }
 void ClipAreaWindow::setGlobalSettings(GlobalSettings* globalSettings)
 {
@@ -73,15 +72,15 @@ void ClipAreaWindow::filesDropped(const juce::StringArray& stringArray, int x, i
         juce::FileInputSource* inputSource = new juce::FileInputSource(audioFile, true);
         audioThumbnail->setSource(inputSource);
 
-        AudioClipWindow audioClipWindow = AudioClipWindow(std::move(audioThumbnail));
+        AudioClipWindow* audioClipWindow = new AudioClipWindow(std::move(audioThumbnail));
         double sampleCount = static_cast<double>(audioFormatReader->lengthInSamples);
         double framesPerPixel = static_cast<double>(globalSettings->framesPerPixel);
         int audioClipWidth = static_cast<int>(sampleCount / framesPerPixel);
 
         int trackHeaderHeight = globalSettings->trackHeaderHeight;
-        audioClipWindow.setBounds(x, y, trackHeaderHeight, audioClipWidth);
+        audioClipWindow->setBounds(x, y, audioClipWidth, trackHeaderHeight);
 
         addAndMakeVisible(audioClipWindow);
-        audioClipWindows.push_back(std::move(audioClipWindow));
+        audioClipWindows.push_back(audioClipWindow);
     }
 }
